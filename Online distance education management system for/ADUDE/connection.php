@@ -1,11 +1,14 @@
 <?php
-$host = "localhost";
-$user = "root";
-$password = "";
-$database = "wku_distance"; // Replace "wku_distance" with your actual database name
+$host = "localhost"; // Your database host
+$user = "root";      // Your database username
+$pass = "";          // Your database password
+$dbname = "cde";     // The correct database name
 
-$conn = mysqli_connect($host, $user, $password, $database);
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+// Create connection
+$conn = new mysqli($host, $user, $pass, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>

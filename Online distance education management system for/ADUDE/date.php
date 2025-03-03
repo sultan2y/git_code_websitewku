@@ -2,7 +2,7 @@
 session_start();
 include("connection.php");
 
-// Force selection of 'cde' database before the query (temporary fix)
+// Ensure the 'cde' database is selected (optional if already set in connection.php)
 $conn->select_db("cde");
 
 // Query the 'date' table
