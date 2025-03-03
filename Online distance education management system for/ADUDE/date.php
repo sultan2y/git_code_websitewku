@@ -4,6 +4,10 @@ include("connection.php");
 
 $sql = "SELECT * FROM date";
 $result = $conn->query($sql);
+
+if (!$result) {
+    die("Query failed: " . $conn->error);
+}
 ?>
 
 <html>
