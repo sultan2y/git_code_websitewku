@@ -2,9 +2,14 @@
 session_start();
 include("connection.php");
 
+// Force selection of 'cde' database before the query (temporary fix)
+$conn->select_db("cde");
+
+// Query the 'date' table
 $sql = "SELECT * FROM date";
 $result = $conn->query($sql);
 
+// Check for query errors
 if (!$result) {
     die("Query failed: " . $conn->error);
 }
@@ -12,7 +17,6 @@ if (!$result) {
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="3.css">
     <title>Important Dates - Wolkite University</title>
 </head>
 <body>
@@ -28,4 +32,8 @@ if (!$result) {
     <?php endif; ?>
 </body>
 </html>
-<?php $conn->close(); ?>
+
+<?php
+// Close the database connection
+$conn->close();
+?>
