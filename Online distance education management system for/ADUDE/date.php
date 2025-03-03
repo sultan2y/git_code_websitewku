@@ -2,16 +2,22 @@
 session_start();
 include("connection.php");
 
-// Ensure the 'cde' database is selected (optional if already set in connection.php)
+// Debug: Show the current database
+$current_db = $conn->query("SELECT DATABASE()")->fetch_row()[0];
+echo "Current database: " . $current_db . "<br>";
+
+// Force 'cde' (temporary)
 $conn->select_db("cde");
 
-// Query the 'date' table
+// Run the query
 $sql = "SELECT * FROM date";
 $result = $conn->query($sql);
 
-// Check for query errors
+// Check for errors
 if (!$result) {
     die("Query failed: " . $conn->error);
+} else {
+    echo "Query executed successfully.<br>";
 }
 ?>
 
@@ -34,6 +40,5 @@ if (!$result) {
 </html>
 
 <?php
-// Close the database connection
 $conn->close();
 ?>
