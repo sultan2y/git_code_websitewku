@@ -1,10 +1,7 @@
 <?php
- session_start();
- session_unset();
- session_destroy();
- 
- echo "<script>window.location='login.php';</script>";
- {
-   echo "session not set";
- }
+session_start();
+session_unset();
+session_destroy();
+header("Location: login.php");
+exit();
 ?>

@@ -1,96 +1,64 @@
 <?php
-	include("connection.php");  
- session_start();
-if(isset($_SESSION['User_Id']))
- {
-  $mail=$_SESSION['User_Id'];
- } 
- else 
- {
- ?>
-<script>
-  alert('You Are Not Logged In !! Please Login to access this page');
-  alert(window.location='login.php');
- </script>
- <?php
- }
- ?>
+include("connection.php");
+session_start();
+
+if (!isset($_SESSION['User_Id']) || $_SESSION['b'] !== 'Instructor') {
+    echo "<script>alert('Please login as Instructor'); window.location='login.php';</script>";
+    exit();
+}
+?>
+
 <html>
 <head>
-<link style="text/css" href="3.css" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="3.css">
+    <title>Instructor Dashboard - Wolkite University</title>
 </head>
 <body>
-<table align=center width=1000px bgcolor="white" border="white">
-<tr>
-<td height=20px  colspan=4>
-
-<img src="2.jpg" width="120px" height="50" ><img src="ima/c12.png" width="1000px" height="50" ><img src="2.jpg" width="120px" height="50" >
-</td>
-
-</tr>
-<td  height=20px colspan=3 bgcolor=#737CA1 >
-  <div id="dropdown">
- <li><a href="Instructor.php">&nbsp;&nbsp;Home</a></li>
- <li><a href="#">Download</a>
- <ul>
-<li><a href="downloadModule.php"> Download Module</a></li>
-<li><a href="download3.php"> download Assignment Answer</a></li>
-</ul></li>
-<li><a href="#">ADD</a>
-<ul>
-<li><a href="testadd.php" target="frame"> Add Exam Type</a></li>
-<li><a href="questionadd.php" target="frame"> Add Quotation</a></li>
-</ul></li>
-<li><a href="addresul.php"> Add Result</a></li>
-<li><a href="updateresult.php"> Update Result</a></li>
-<li><a href="assigmenupload.php">Upload Assigment</a></li>
-<li><a href="changepassword2.php">Change Password </a></li>
-<li><a href="feedback4.php"> Give Feedback </a></li>
-
-	</li>		
-<li><a href="logout.php" id="login">Logout (<?php echo"Hi&nbsp;&nbsp;&nbsp; Instructor";?>)</a></li>	
-</div>			 	
-
-
-</td>
-</tr>
-<tr>
-
-<td  valign="top">
-<!--------body  --->
-<table ><tr><td valign="top"><iframe name="frame" scorrling="auto" width=730px height=420px src="slide.html" style="margin-left:100px"align ="right"></iframe></td></tr></table><br>
-
-</td>                            
-  
-</td>
-
-
-
-
-<td width=150px>
-<table border=0 width=150px height="100" bgcolor=white>
-<tr>
-<td valign=top bgcolor=white>
-<h2><center>
-<font color="black" face="monotype corsiva" size="5">Admass university  distance Office  works for change!!</font><br>
-<font color="white"><a href="debre.php"><iframe name="frame" width=300px height=385px src="date.php"></iframe><a></center></h2>
-</td>
-</tr>
-
-</table>
-</td>
-</tr>
-
-<tr>
-<td colspan=3 bgcolor=gray>
-<table align="center" bgcolor=""><tr><td><font face="Times New Roman" color="white" size="3">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-Admass University of Collage Distance Eduction Office All Right are Reservd &copy; 2010 E.C. 
- &nbsp; &nbsp; &nbsp; &nbsp;
-</font></td></tr></table>
-</td>
-</tr>
-</table>
+    <table align="center" width="1000px" border="0" bgcolor="white">
+        <tr>
+            <td height="20px" colspan="4">
+                <img src="2.jpg" width="120px" height="50"><img src="ima/c12.png" width="1000px" height="50"><img src="2.jpg" width="120px" height="50">
+            </td>
+        </tr>
+        <tr>
+            <td height="20px" colspan="3" bgcolor="#737CA1">
+                <div id="dropdown">
+                    <ul>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="About.php">About Us</a></li>
+                        <li><a href="Instructor.php">Instructor Dashboard</a></li>
+                        <li><a href="logout.php">Logout (<?php echo htmlspecialchars($_SESSION['b']); ?>)</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td height="250px" width="150px" bgcolor="#E5E4E2" valign="top">
+                <table bgcolor="#E5E4E2" border="0" width="150" height="400" class="menu-bar" align="center">
+                    <tr><td width="110" height="20"><b><font color="white"></font></b></td></tr>
+                    <tr><td width="110" height="20"><b><font color="white"><a href="dir.php" style="color:white">Office Director</a></font></b></td></tr>
+                    <tr><td width="150" height="20"><a href="regulation.php" id="drop"><b>Rule and Regulation</b></a></td></tr>
+                    <tr><td><img src="b3.gif" width="200" height="150"></td></tr>
+                </table>
+            </td>
+            <td colspan="2">
+                <h2>Instructor Dashboard</h2>
+                <p>Welcome, <?php echo htmlspecialchars($_SESSION['d'] . " " . $_SESSION['c']); ?>!</p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" bgcolor="gray">
+                <table align="center">
+                    <tr>
+                        <td>
+                            <font face="Times New Roman" color="white" size="3">
+                                Wolkite University Distance Education Office All Rights Reserved © 2010 E.C.
+                            </font>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
